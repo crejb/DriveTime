@@ -1,0 +1,181 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RefuelActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="60dp"
+    	android:orientation="horizontal"> 
+	    <TextView
+	        android:id="@+id/label_car"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.35"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_vertical"
+	        android:text="@string/label_car" />
+	    <Spinner
+	        android:id="@+id/spinner_car"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.65"
+	        android:layout_height="wrap_content" />
+	</LinearLayout>
+	<View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+	
+	<LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="60dp"
+    	android:orientation="horizontal"
+    	android:onClick="editDateClick"> 
+	    <TextView
+	        android:id="@+id/label_date"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.35"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_vertical"
+	        android:text="@string/label_date" />
+        <TextView
+	        android:id="@+id/edit_date"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.65"
+	        android:layout_height="wrap_content">
+	    </TextView>
+    </LinearLayout>
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+	
+	<LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="60dp"
+    	android:orientation="horizontal"
+    	android:onClick="editTimeClick"> 
+	    <TextView
+	        android:id="@+id/label_time"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.35"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_vertical"
+	        android:text="@string/label_time" />
+        <TextView
+	        android:id="@+id/edit_time"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.65"
+	        android:layout_height="wrap_content"
+	        android:ems="10">
+	    </TextView>
+    </LinearLayout>
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+	
+	<LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="60dp"
+    	android:orientation="horizontal"> 
+	    <TextView
+	        android:id="@+id/label_odometer"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.35"
+	        android:layout_height="match_parent"
+	        android:gravity="center_vertical"
+	        android:text="@string/label_odometer" />
+	    <EditText
+	        android:id="@+id/edit_odometer"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.65"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number" >
+        <requestFocus />
+    	</EditText>
+    </LinearLayout>
+     <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="60dp"
+    	android:orientation="horizontal"> 
+	    <TextView
+	        android:id="@+id/label_volume"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.35"
+	        android:layout_height="match_parent"
+	        android:gravity="center_vertical"
+	        android:text="@string/label_volume" />
+	    <EditText
+	        android:id="@+id/edit_volume"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.65"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number" >
+        <requestFocus />
+    	</EditText>
+    </LinearLayout>
+     <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="60dp"
+    	android:orientation="horizontal"> 
+	    <TextView
+	        android:id="@+id/label_cost"
+	        style="@style/NormalLabelFont"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.35"
+	        android:layout_height="match_parent"
+	        android:gravity="center_vertical"
+	        android:text="@string/label_cost" />
+	    <EditText
+	        android:id="@+id/edit_cost"
+	        android:layout_width="0dp"
+	        android:layout_weight="0.65"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number" >
+        <requestFocus />
+    	</EditText>
+    </LinearLayout>
+     <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+     
+    <View
+	    android:layout_width="0dp"
+	    android:layout_height="0dp" 
+	    android:layout_weight="1"/>
+    <Button 
+        android:id="@+id/button_start"
+        style="@style/NormalLabelFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_done"
+        android:onClick="buttonDoneClick" />
+
+</LinearLayout>

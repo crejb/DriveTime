@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <TextView 
+        android:id="@+id/label_start_time"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Start Time: "/>
+	<TextView 
+        android:id="@+id/text_start_time"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/label_start_time"
+        android:layout_toRightOf="@id/label_start_time" />
+	
+    <TextView 
+        android:id="@+id/label_travel_time"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/text_start_time"
+        android:text="Travel Time: "/>
+	<TextView 
+        android:id="@+id/text_travel_time"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/label_travel_time"
+        android:layout_toRightOf="@id/label_travel_time" />
+	
+	<TextView 
+        android:id="@+id/label_distance"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/label_travel_time"
+        android:text="Distance: "/>
+	<TextView 
+        android:id="@+id/text_distance"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/label_distance"
+        android:layout_toRightOf="@id/label_distance" />
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="#819FF7">
+    <TextView 
+        android:id="@+id/label_refuel_time"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Refuel Time: "/>
+	<TextView 
+        android:id="@+id/text_refuel_time"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/label_refuel_time" />
+	
+    <TextView 
+        android:id="@+id/label_refuel_volume"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/label_refuel_time"
+        android:text="Amount: "/>
+	<TextView 
+        android:id="@+id/text_refuel_volume"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/label_refuel_volume"
+        android:layout_toRightOf="@id/label_refuel_volume" />
+	
+	<TextView 
+        android:id="@+id/label_refuel_cost"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/text_refuel_volume"
+        android:text="Cost: "/>
+	<TextView 
+        android:id="@+id/text_refuel_cost"
+        style="@style/NormalLabelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/label_refuel_cost"
+        android:layout_toRightOf="@id/label_refuel_cost" />
+</RelativeLayout>

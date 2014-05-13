@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cjb.drivetime"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.cjb.drivetime.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.cjb.drivetime.CurrentTrip"
+            android:label="@string/title_activity_current_trip" >
+        </activity>
+        <activity
+            android:name="com.cjb.drivetime.ViewLogs"
+            android:label="@string/title_activity_view_logs"
+            android:parentActivityName="com.cjb.drivetime.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cjb.drivetime.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.cjb.drivetime.NewTrip"
+            android:label="@string/title_activity_new_trip"
+            android:parentActivityName="com.cjb.myfirstapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cjb.myfirstapp.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.cjb.drivetime.EndTrip"
+            android:label="@string/title_activity_end_trip" >
+        </activity>
+        <activity
+            android:name="com.cjb.drivetime.RefuelActivity"
+            android:label="@string/title_activity_refuel" >
+        </activity>
+        <activity
+            android:name="com.cjb.drivetime.StatisticsActivity"
+            android:label="@string/title_activity_statistics"
+            android:parentActivityName="com.cjb.drivetime.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cjb.drivetime.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>

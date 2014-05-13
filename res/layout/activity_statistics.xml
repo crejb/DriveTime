@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".StatisticsActivity" >
+
+	<com.cjb.drivetime.StatisticGroupControl
+	    android:id="@+id/statistic1"
+	    android:layout_width="100sp"
+	    android:layout_height="70sp"
+	    android:layout_margin="5sp"
+	    app:itemValue="6.4"
+	    app:itemDescription="L/100ml"/>
+	
+	<com.cjb.drivetime.StatisticGroupControl 
+	    android:id="@+id/statistic2"
+	    android:layout_width="100sp"
+	    android:layout_height="70sp"
+	    android:layout_margin="5sp"
+	    android:layout_toRightOf="@id/statistic1"
+	    app:itemValue="480km"
+	    app:itemDescription="travelled"/>
+	
+	<com.cjb.drivetime.StatisticGroupControl 
+	    android:id="@+id/statistic3"
+	    android:layout_width="100sp"
+	    android:layout_height="70sp"
+	    android:layout_margin="5sp"
+	    android:layout_toRightOf="@id/statistic2"
+	    app:itemValue="480km"
+	    app:itemDescription="travelled"/>
+
+</RelativeLayout>
