@@ -31,6 +31,6 @@
     <string name="label_cost">Cost</string>
     <string name="title_activity_statistics">StatisticsActivity</string>
     <string name="label_date">Date</string>
-    
+    <string name="title_activity_test">TestActivity</string>
 
 </resources>

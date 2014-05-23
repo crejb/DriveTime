@@ -42,40 +42,6 @@ public class ViewLogs extends Activity {
 	}
 
 	private List<ViewLogListItem> buildListItems() {
-		/*
-		// Get all trips, sorted by date, newest first 
-		List<Trip> trips = MainActivity.GlobalTripRepository.GetAll();
-		Collections.sort(trips, new Comparator<Trip>(){
-			@Override
-			public int compare(Trip trip1, Trip trip2) {
-				return trip2.getTimeStart().compareTo(trip1.getTimeStart());
-			}
-		});
-		
-		List<Refuel> refuels = MainActivity.GlobalRefuelRepository.GetAll();
-		Collections.sort(refuels, new Comparator<Refuel>(){
-			@Override
-			public int compare(Refuel refuel1, Refuel refuel2) {
-				return refuel2.getDate().compareTo(refuel1.getDate());
-			}		
-		});
-		
-		List<ViewLogListItem> items = new ArrayList<ViewLogListItem>();
-		
-		Date currentDate = null;
-		for(Trip trip : trips){
-			// Add a Date header if this trip is on a new date
-			Date tripDate = getDateWithoutTime(trip.getTimeStart());
-			if(currentDate == null || !currentDate.equals(tripDate)){
-				items.add(new ViewLogListItem(tripDate));
-				currentDate = tripDate;
-			}
-			
-			// Add the trips
-			items.add(new ViewLogListItem(trip));
-		}
-		*/
-		
 		HashSet<Date> uniqueDates = new HashSet<Date>();
 		List<ViewLogListItem> items = new ArrayList<ViewLogListItem>();
 		

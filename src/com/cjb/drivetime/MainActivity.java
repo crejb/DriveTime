@@ -59,6 +59,7 @@ public class MainActivity extends Activity {
 	
 	public void buttonViewStatisticsClick(View view){
 		Intent intent = new Intent(this, StatisticsActivity.class);
+		//Intent intent = new Intent(this, TestActivity.class);
     	startActivity(intent);
     }
 	

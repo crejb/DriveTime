@@ -58,6 +58,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cjb.drivetime.MainActivity" />
         </activity>
+        <activity
+            android:name="com.cjb.drivetime.TestActivity"
+            android:label="@string/title_activity_test" >
+        </activity>
     </application>
 
 </manifest>
