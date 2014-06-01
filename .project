@@ -3,6 +3,7 @@
 	<name>DriveTime</name>
 	<comment></comment>
 	<projects>
+		<project>DataEntryListView</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

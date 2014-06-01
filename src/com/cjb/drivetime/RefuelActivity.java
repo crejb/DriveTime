@@ -1,47 +1,55 @@
 package com.cjb.drivetime;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
-import android.app.TimePickerDialog;
-import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.ListView;
 
+import com.cjb.dataentrylistview.DataEntryDateListItem;
+import com.cjb.dataentrylistview.DataEntryListItem;
+import com.cjb.dataentrylistview.DataEntryListItemAdapter;
+import com.cjb.dataentrylistview.DataEntryListListItem;
+import com.cjb.dataentrylistview.DataEntryStringListItem;
+import com.cjb.dataentrylistview.DataEntryTimeListItem;
 import com.cjb.drivetime.Entity.Refuel;
 
 public class RefuelActivity extends Activity {
 
-	private Date refuelDate;
+	private List<DataEntryListItem> _items;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_refuel);
-		
-		refuelDate = new Date();
-		
-		populateCarSpinner();
-		populateDateTimeText();
+				
+		_items = buildListItems(new Date());
+
+		final ListView listview = (ListView) findViewById(R.id.refuel_data_entry_list_view);
+		final ArrayAdapter<DataEntryListItem> adapter = 
+				new DataEntryListItemAdapter(this, android.R.layout.simple_list_item_1, _items);
+		listview.setAdapter(adapter);
 	}
-	
-	private void populateDateTimeText(){
-		((TextView)findViewById(R.id.edit_date)).setText(SimpleDateFormat.getDateInstance().format(refuelDate));
-		((TextView)findViewById(R.id.edit_time)).setText(SimpleDateFormat.getTimeInstance().format(refuelDate));
+
+
+	private List<DataEntryListItem> buildListItems(Date timeStart) {
+		List<DataEntryListItem> items = new ArrayList<DataEntryListItem>();
+		//TODO: Get values from DB
+		items.add(new DataEntryListListItem("Car", "Default car", new String[]{"Default car", "Other car"}));
+		items.add(new DataEntryDateListItem("Date", timeStart));
+		items.add(new DataEntryTimeListItem("Time", timeStart));
+		items.add(new DataEntryStringListItem("Odometer", "0"));
+		items.add(new DataEntryStringListItem("Volume", "0"));
+		items.add(new DataEntryStringListItem("Cost", "0"));
+		return items;
 	}
 
 	@Override
@@ -51,65 +59,15 @@ public class RefuelActivity extends Activity {
 		return true;
 	}
 	
-	private void populateCarSpinner() {
-		//TODO: Get cars from DB
-		String[] cars = new String[]{"Default car", "Other car"};
-		Spinner spinner = (Spinner) findViewById(R.id.spinner_car);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cars);
-		spinner.setAdapter(adapter);
-	}
-	
-	public void editTimeClick(View view){
-		final Calendar calendar = GregorianCalendar.getInstance();
-		calendar.setTime(refuelDate);
-		OnTimeSetListener timeSetCallback = new OnTimeSetListener() {
-			@Override
-			public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-				calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-				calendar.set(Calendar.MINUTE, minute);
-				refuelDate = calendar.getTime();
-				populateDateTimeText();
-			}
-		};
-		TimePickerDialog datePicker = new TimePickerDialog(this, timeSetCallback, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
-		datePicker.show();
-	}
-	
-	public void editDateClick(View view){
-		final Calendar calendar = GregorianCalendar.getInstance();
-		calendar.setTime(refuelDate);
-		
-		OnDateSetListener dateSetCallback = new OnDateSetListener() {
-			@Override
-			public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-				calendar.set(Calendar.YEAR, year);
-				calendar.set(Calendar.MONTH, monthOfYear);
-				calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-				refuelDate = calendar.getTime();
-				populateDateTimeText();
-			}
-		};
-		DatePickerDialog datePicker = new DatePickerDialog(this, dateSetCallback, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-		datePicker.show();
-	}
-	
 	public void buttonDoneClick(View view){
-		Date time = refuelDate;
-		
-		/*try {
-			time = SimpleDateFormat.getDateTimeInstance().parse(((EditText)findViewById(R.id.edit_time)).getText().toString());
-		} catch (ParseException e) {
-			ShowErrorMessage("Please enter a valid date");
-			return;
-		}*/	
-		
-		int odometerReading = Integer.parseInt(((EditText)findViewById(R.id.edit_odometer)).getText().toString());
-		int cost = Integer.parseInt(((EditText)findViewById(R.id.edit_cost)).getText().toString());
-		int volume = Integer.parseInt(((EditText)findViewById(R.id.edit_volume)).getText().toString());
-		
+		//String car = ((DataEntryListListItem)_items.get(0)).GetValue();
+		Date refuelDateAndTime = CombineDateAndTime(((DataEntryDateListItem)_items.get(1)).GetValue(), ((DataEntryTimeListItem)_items.get(2)).GetValue());
+		int odometerReading = Integer.parseInt(((DataEntryStringListItem)_items.get(3)).GetValue());
+		int volume = Integer.parseInt(((DataEntryStringListItem)_items.get(4)).GetValue());
+		int cost = Integer.parseInt(((DataEntryStringListItem)_items.get(5)).GetValue());
+			
 		Refuel refuel = new Refuel();
-		
-		refuel.setDate(time);
+		refuel.setDate(refuelDateAndTime);
 		//refuel.setCarId((Spinner) findViewById(R.id.spinner_car)));
 		refuel.setOdometerReading(odometerReading);
 		refuel.setCost(cost);
@@ -121,12 +79,20 @@ public class RefuelActivity extends Activity {
 		startActivity(intent);
 	}
 
-	private void ShowErrorMessage(String message){
-		new AlertDialog.Builder(this)
-		.setTitle("Error")
-		.setMessage(message)
-		.setIcon(android.R.drawable.ic_dialog_alert)
-		.setPositiveButton(android.R.string.ok, null)
-		.show();
+	private Date CombineDateAndTime(Date date, Date time) {
+		Calendar dateCalendar = GregorianCalendar.getInstance();
+		dateCalendar.setTime(date);
+		
+		Calendar timeCalendar = GregorianCalendar.getInstance();
+		timeCalendar.setTime(time);
+		
+		Calendar refuelCalendar = GregorianCalendar.getInstance();
+		refuelCalendar.set(Calendar.YEAR, dateCalendar.get(Calendar.YEAR));
+		refuelCalendar.set(Calendar.MONTH, dateCalendar.get(Calendar.MONTH));
+		refuelCalendar.set(Calendar.DAY_OF_MONTH, dateCalendar.get(Calendar.DAY_OF_MONTH));
+		refuelCalendar.set(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY));
+		refuelCalendar.set(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE));
+		refuelCalendar.set(Calendar.SECOND, timeCalendar.get(Calendar.SECOND));
+		return refuelCalendar.getTime();
 	}
 }

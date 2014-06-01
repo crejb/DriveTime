@@ -1,6 +1,19 @@
 package com.cjb.drivetime;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import com.cjb.dataentrylistview.DataEntryDateListItem;
+import com.cjb.dataentrylistview.DataEntryListItem;
+import com.cjb.dataentrylistview.DataEntryListItemAdapter;
+import com.cjb.dataentrylistview.DataEntryListListItem;
+import com.cjb.dataentrylistview.DataEntryStringListItem;
+import com.cjb.dataentrylistview.DataEntryTimeListItem;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,11 +24,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 public class NewTrip extends Activity {
 
 	public final static String EXTRA_MESSAGE_START_NEW_TRIP_DATA = "com.cjb.drivetime.STARTNEWTRIPDATA";
+	private List<DataEntryListItem> _items;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +39,22 @@ public class NewTrip extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		populateCarSpinner();
-		populateLogbookSpinner();
+		_items = buildListItems();
+
+		final ListView listview = (ListView) findViewById(R.id.new_trip_data_entry_list_view);
+		final ArrayAdapter<DataEntryListItem> adapter = 
+				new DataEntryListItemAdapter(this, android.R.layout.simple_list_item_1, _items);
+		listview.setAdapter(adapter);
 	}
 
-	private void populateLogbookSpinner() {
-		//TODO: Get logbooks from DB
-		String[] logbooks = new String[]{"Default logbook", "Other logbook"};
-		Spinner spinner = (Spinner) findViewById(R.id.spinner_logbook);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, logbooks);
-		spinner.setAdapter(adapter);
-		
-	}
 
-	private void populateCarSpinner() {
-		//TODO: Get cars from DB
-		String[] cars = new String[]{"Default car", "Other car"};
-		Spinner spinner = (Spinner) findViewById(R.id.spinner_car);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cars);
-		spinner.setAdapter(adapter);
+	private List<DataEntryListItem> buildListItems() {
+		List<DataEntryListItem> items = new ArrayList<DataEntryListItem>();
+		//TODO: Get values from DB
+		items.add(new DataEntryListListItem("Car", "Default car", new String[]{"Default car", "Other car"}));
+		items.add(new DataEntryListListItem("Logbook", "Default logbook", new String[]{"Default logbook", "Other logbook"}));
+		items.add(new DataEntryStringListItem("Odometer", "15000"));
+		return items;
 	}
 
 	/**
@@ -79,14 +91,16 @@ public class NewTrip extends Activity {
 
 	public void buttonStartClick(View view){
     	Intent intent = new Intent(this, CurrentTrip.class);
-    	
-    	String car = ((Spinner) findViewById(R.id.spinner_car)).getSelectedItem().toString();
-    	String logbook = ((Spinner) findViewById(R.id.spinner_logbook)).getSelectedItem().toString();
-    	Date startTime = new Date();
-    	int startOdometer = Integer.parseInt(((EditText)findViewById(R.id.edit_odometer_start)).getText().toString());
-    	NewTripData newTripData = new NewTripData(car, logbook, startTime, startOdometer);
 
+    	String car = ((DataEntryListListItem)_items.get(0)).GetValue();
+    	String logbook = ((DataEntryListListItem)_items.get(1)).GetValue();
+    	int startOdometer = Integer.parseInt(((DataEntryStringListItem)_items.get(2)).GetValue());
+    	
+    	Date startTime = new Date();
+    	NewTripData newTripData = new NewTripData(car, logbook, startTime, startOdometer);
+    	
     	intent.putExtra(EXTRA_MESSAGE_START_NEW_TRIP_DATA, newTripData);
     	startActivity(intent);
     }
+	
 }

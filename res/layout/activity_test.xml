@@ -10,5 +10,5 @@
 	<ListView 
 	    android:id="@+id/list_view_data_entry"
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent" />"
+	    android:layout_height="fill_parent" />
 </RelativeLayout>

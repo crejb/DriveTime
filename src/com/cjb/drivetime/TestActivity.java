@@ -11,12 +11,13 @@ import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.cjb.drivetime.ViewModel.DataEntryList.DataEntryDateListItem;
-import com.cjb.drivetime.ViewModel.DataEntryList.DataEntryListItem;
-import com.cjb.drivetime.ViewModel.DataEntryList.DataEntryListItemAdapter;
-import com.cjb.drivetime.ViewModel.DataEntryList.DataEntryListListItem;
-import com.cjb.drivetime.ViewModel.DataEntryList.DataEntryStringListItem;
-import com.cjb.drivetime.ViewModel.DataEntryList.DataEntryTimeListItem;
+import com.cjb.dataentrylistview.DataEntryDateListItem;
+import com.cjb.dataentrylistview.DataEntryListItem;
+import com.cjb.dataentrylistview.DataEntryListItemAdapter;
+import com.cjb.dataentrylistview.DataEntryListListItem;
+import com.cjb.dataentrylistview.DataEntryStringListItem;
+import com.cjb.dataentrylistview.DataEntryTimeListItem;
+
 
 public class TestActivity extends Activity {
 
